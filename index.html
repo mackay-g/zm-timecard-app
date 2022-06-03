@@ -4,62 +4,441 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <script src="//cdn.jsdelivr.net/jquery/2.1.1/jquery.min.js" type="text/javascript"></script>
-        <script src="//requirejs.org/docs/release/2.3.5/minified/require.js" type="text/javascript"></script>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Timecard App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="normalize.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100;300;400;500;700;900&display=swap"
+    rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a07f9df740.js" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <style>
+    .logo {
+      width: 100%;
+      max-width: 170px;
+    }
+
+    #img-container {
+
+      min-height: 200px;
+      padding: 25px;
+      background-color: white;
+      border: 1px solid black;
+      position: relative;
+      display: block;
+      margin: 30px auto 0;
+
+    }
+
+    #list img {
+      max-width: 200px;
+    }
+
+    .btn.upload {
+
+      right: -20px;
+      bottom: -20px;
+      position: absolute;
+      border: 1px solid black;
+      box-shadow: 1px 1px 2px black;
+
+    }
+
+    .btn.upload i{
+      top:6px;
+      position: relative;
+    }
+
+    .btn.controls.small {
+      border: 1px solid white;
+      background-color: #1681F8;
+      color: white;
+    }
+
+    .btn.controls.large {
+      border: 1px solid white;
+      background-color: white;
+      color: #1681F8;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+    }
+
+    .btn.large i {
+     
+      left: 1px;
+      position: relative;
+    }
+
+    .btn.small i{
+      top:-1px;
+      position: relative;
+    }
+
+    .btn {
+      width: 33px;
+      height: 33px;
+      border-radius: 31px;
+      background-color: white;
+      cursor: pointer;
+      display: inline-block;
+      text-align: center;
+      color: black;
+      margin:5px;
+
+    }
+
+    #files {
+      display: none;
+    }
+
+    body {
+      background-color: #1681F8;
+      color: white;
+      font-family: 'Noto Sans JP', sans-serif;
+    }
+
+    .wrapper {
+      margin: 35px auto;
+      display: block;
+      text-align: center;
+      max-width: 250px;
+    }
+
+    .tagline {
+      font-size: 9px;
+      font-weight: 400;
+      letter-spacing: 0.5em;
+      margin: 0;
+
+    }
+
+    footer {
+      border-top: 1px solid white;
+      padding-top: 15px;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 400;
+
+    }
+
+    h1 {
+      font-size: 38px;
+      font-weight: 300;
+      margin: 25px 0;
+    }
+
+    #employeeid {
+      font-size: 9px;
+      font-weight: 400;
+    }
+
+    .timer-width{
+      display: inline;
+    width: 40px;
+    font-size: 38px;
+    font-weight: 300;
+    border:none;
+    color:white;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    
+    }
+
+    .timer-width.divider{
+    width: 1px;
+    position: relative;
+    top: -3px;
+    left: -4px;
+    display: inline-block;
+
+    }
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: red;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: red;
+}
+#timer2{
+  margin:20px 0;
+}
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <p>Test</p>
-        
-      <script type="module" src="main.js"></script>
 
-     <script>
-         
+    <header>
+      <img class="logo" src="logo.png" alt="ZenMarket">
+      <p class="tagline">ゼンマーケット株式会社</p>
+      <h2>社員証</h2>
+    </header>
+    <section id="qr">
 
-function getLocalStream() {
-    navigator.mediaDevices.getUserMedia({video: false, audio: true}).then( stream => {
-        window.localStream = stream; // A
-        window.localAudio.srcObject = stream; // B
-        window.localAudio.autoplay = true; // C
-    }).catch( err => {
-        console.log("u got an error:" + err)
+      <input type="file" id="files">
+      <p id="state">No images stored in your browser.</p>
+      <div id="img-container">
+        <label for="files" class="btn upload">
+          <i class="fa-solid fa-camera"></i>
+        </label>
+        <div id="list">
+
+        </div>
+      </div>
+      <a href="#" id="deleteImgs">Delete Images</a>
+    </section>
+    <section style="display:none" id="timer">
+    </section>
+
+    
+<section id="timer2">
+    <input placeholder="60" class="form-control text-center timer-width" type="text" maxlength="2" value="60" id="m1">
+<div class="timer-width divider">:</div>
+<input placeholder="00" class="form-control text-center timer-width" type="text" maxlength="2" value="00" id="s1">
+<br>
+    <button type="button" class="btn controls small" onclick="pauseTimer()"><i class="fa-solid fa-pause"></i></button><button type="button" class="btn controls large" onclick="countdownStart()"><i class="fa-solid fa-play"></i></button>
+    <button type="button" class="btn controls small" onclick="clearTimer()"><i class="fa-solid fa-redo"></i></button>
+  </section>
+
+    <footer>
+      <h2 id="name" contenteditable>Greg Mackay</h2>
+      <p id="title" contenteditable>海外営業部　デザイナー</p>
+      <span id="employeeid" contenteditable>w4696020869</span>
+
+    </footer>
+  </div>
+  <script>
+
+    /******* Name Edit *******/
+    const editables = document.querySelectorAll("[contenteditable]");
+
+    // save edits
+    editables.forEach(el => {
+      el.addEventListener("blur", () => {
+        localStorage.setItem("dataStorage-" + el.id, el.innerHTML);
+      })
     });
+
+    // once on load
+    for (var key in localStorage) {
+      if (key.includes("dataStorage-")) {
+        const id = key.replace("dataStorage-", "");
+        document.querySelector("#" + id).innerHTML = localStorage.getItem(key);
+      }
+    }
+
+
+    /* Image Upload*/
+    var imagesObject = [];
+
+    function handleFileSelect(evt) {
+      var files = evt.target.files; // FileList object
+
+      // Loop through the FileList and render image files as thumbnails.
+      for (var i = 0, f; f = files[i]; i++) {
+
+        // Only process image files.
+        if (!f.type.match('image.*')) {
+          continue;
+        }
+
+        var reader = new FileReader();
+
+        // Closure to capture the file information.
+        reader.onload = function (e) {
+          displayImgData(e.target.result)
+          addImage(e.target.result);
+        };
+
+        reader.readAsDataURL(f);
+      }
+    }
+
+    function loadFromLocalStorage() {
+      var images = JSON.parse(localStorage.getItem("images"))
+
+      if (images && images.length > 0) {
+        imagesObject = images;
+
+        displayNumberOfImgs();
+        images.forEach(displayImgData);
+      }
+    }
+
+    function addImage(imgData) {
+      imagesObject.push(imgData);
+      displayNumberOfImgs();
+      localStorage.setItem("images", JSON.stringify(imagesObject));
+    }
+
+    function displayImgData(imgData) {
+      var span = document.createElement('span');
+      span.innerHTML = '<img class="thumb" src="' + imgData + '"/>';
+      document.getElementById('list').insertBefore(span, null);
+    }
+
+    function displayNumberOfImgs() {
+      if (imagesObject.length > 0) {
+
+        document.getElementById("state").innerHTML = imagesObject.length + " image" + ((imagesObject.length > 1) ? "s" : "") + " stored in your browser";
+
+        document.getElementById("deleteImgs").style.display = "inline";
+
+
+      } else {
+        document.getElementById("state").innerHTML = "No images stored in your browser.";
+        document.getElementById("deleteImgs").style.display = "none";
+      }
+
+
+    }
+
+    function deleteImages() {
+      imagesObject = [];
+      localStorage.removeItem("images");
+      displayNumberOfImgs()
+      document.getElementById('list').innerHTML = "";
+    }
+
+    document.getElementById('files').addEventListener('change', handleFileSelect, false);
+    document.getElementById('deleteImgs').addEventListener("click", deleteImages);
+    loadFromLocalStorage();
+    
+  
+
+
+var timer;
+function saveStopTime(stopTime){
+	localStorage.setItem('stopTime',stopTime)
 }
 
-getLocalStream();
+function countdownStart() {
+	var hour = parseInt($('#h1').val() || 0)
+	var min = parseInt($('#m1').val()  || 0)
+	var sec = parseInt($('#s1').val()  || 0)
 
-
-/* Test */
-
-var SoundDetection = require('sound-detection');
-
-var options = {
-    url: 'http://babymonitorcam/audio.cgi',
-    format: {
-        bitDepth: 16,
-        numberOfChannels: 1,
-        signed: true
-    },
-    triggerLevel: 30
+	var totalTime = hour * 60 * 60 + min *60 + sec
+	totalTime = totalTime * 1000
+	var currentTime = new Date()
+	saveStopTime(currentTime.getTime() + totalTime)
+	startTimer(totalTime/1000)
 }
 
-var detector = new SoundDetection(options, function(dB) {
-    console.log('Noise Detected at %sdB', dB);
-});
+function secondsToHms(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
 
-detector.start();
+    var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+    var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+    return hDisplay + mDisplay + sDisplay; 
+}
+
+function secondsToH(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+    var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+    return hDisplay; 
+}
+
+function secondsToM(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? "" : "") : "60";
+    var sDisplay = s > 0 ? s + (s == 1 ? " second" : " seconds") : "";
+    var mDisplay = (m < 10) ? "0"+m : m;
+    return mDisplay; 
+}
+
+function secondsToS(d) {
+    d = Number(d);
+    var h = Math.floor(d / 3600);
+    var m = Math.floor(d % 3600 / 60);
+    var s = Math.floor(d % 3600 % 60);
+
+    var hDisplay = h > 0 ? h + (h == 1 ? " hour, " : " hours, ") : "";
+    var mDisplay = m > 0 ? m + (m == 1 ? " minute, " : " minutes, ") : "";
+    var sDisplay = s > 0 ? s + (s == 1 ? "" : "") : "00";
+    var sDisplay = (s < 10) ? "0"+s : s;
+    return sDisplay; 
+}
 
 
-     </script>
+function startTimer(totalTime){
+	clearInterval(timer)
+	timer = setInterval(function(){
+		totalTime--
+		$('#timer').html(secondsToHms(totalTime))
+    $('#m1').val(secondsToM(totalTime))
+    $('#s1').val(secondsToS(totalTime))
+	}, 1000);
+  
+}
 
-    </body>
+function clearTimer(){
+	$('#h1').val(0)
+	$('#h2').val(0)
+	$('#m1').val(60)
+	$('#m2').val(0)
+	$('#s1').val("00")
+  //$('#s1').html("00")
+	$('#s2').val(0)
+	$('#timer').html("")
+	localStorage.removeItem('stopTime')
+	clearInterval(timer)
+}
+
+function pauseTimer() {
+      clearInterval(timer)
+    }
+
+function checkHasTimer(){
+	var stopTime = localStorage.getItem('stopTime')
+	if(stopTime)
+	{
+		var currentTime = new Date()
+		$('#timer').html(secondsToHms((stopTime - currentTime.getTime())/1000))
+		startTimer((stopTime - currentTime.getTime())/1000)
+	}
+}
+
+$("input:text").focus(function() { $(this).select(); } );
+checkHasTimer()
+
+  </script>
+</body>
+
 </html>
