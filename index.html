@@ -43,30 +43,31 @@
     .btn.upload {
 
       right: -20px;
-      bottom: -20px;
+      bottom: -40px;
       position: absolute;
       border: 1px solid black;
       box-shadow: 1px 1px 2px black;
+      border: 1px solid white;
+      background-color: white;
+      color: black;
+      width: 40px;
+      height: 40px;
 
     }
 
     .btn.upload i{
-      top:6px;
+      top:10px;
       position: relative;
     }
 
-    .btn.controls.small {
-      border: 1px solid white;
-      background-color: #1681F8;
-      color: white;
-    }
+   
 
-    .btn.controls.large {
+    .btn.large {
       border: 1px solid white;
       background-color: white;
       color: #1681F8;
-      width: 40px;
-      height: 40px;
+      width: 70px;
+      height: 70px;
       border-radius: 40px;
     }
 
@@ -79,18 +80,25 @@
     .btn.small i{
       top:-1px;
       position: relative;
+  
     }
 
     .btn {
-      width: 33px;
-      height: 33px;
-      border-radius: 31px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50px;
       background-color: white;
       cursor: pointer;
       display: inline-block;
       text-align: center;
-      color: black;
-      margin:5px;
+      color: white;
+      margin:20px 10px;
+      border:1px solid white;
+      background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 
     }
 
@@ -136,9 +144,10 @@
       margin: 25px 0;
     }
 
-    #employeeid {
+    .employeeid a{
       font-size: 9px;
       font-weight: 400;
+      color: white !important;
     }
 
     .timer-width{
@@ -198,7 +207,7 @@
     <section id="qr">
 
       <input type="file" id="files">
-      <p id="state">No images stored in your browser.</p>
+      <!-- <p id="state">No images stored in your browser.</p> -->
       <div id="img-container">
         <label for="files" class="btn upload">
           <i class="fa-solid fa-camera"></i>
@@ -207,7 +216,7 @@
 
         </div>
       </div>
-      <a href="#" id="deleteImgs">Delete Images</a>
+      <!-- <a href="#" id="deleteImgs">Delete Images</a> -->
     </section>
     <section style="display:none" id="timer">
     </section>
@@ -218,14 +227,14 @@
 <div class="timer-width divider">:</div>
 <input placeholder="00" class="form-control text-center timer-width" type="text" maxlength="2" value="00" id="s1">
 <br>
-    <button type="button" class="btn controls small" onclick="pauseTimer()"><i class="fa-solid fa-pause"></i></button><button type="button" class="btn controls large" onclick="countdownStart()"><i class="fa-solid fa-play"></i></button>
-    <button type="button" class="btn controls small" onclick="clearTimer()"><i class="fa-solid fa-redo"></i></button>
+    <button type="button" class="btn controls" onclick="pauseTimer()"><i class="fa-solid fa-pause"></i></button><button type="button" class="btn controls large" onclick="countdownStart()"><i class="fa-solid fa-play"></i></button>
+    <button type="button" class="btn controls" onclick="clearTimer()"><i class="fa-solid fa-redo"></i></button>
   </section>
 
     <footer>
       <h2 id="name" contenteditable>Greg Mackay</h2>
       <p id="title" contenteditable>海外営業部　デザイナー</p>
-      <span id="employeeid" contenteditable>w4696020869</span>
+      <span class="employeeid"><a href="#" id="deleteImgs">Delete Images</a></span>
 
     </footer>
   </div>
@@ -302,13 +311,13 @@
     function displayNumberOfImgs() {
       if (imagesObject.length > 0) {
 
-        document.getElementById("state").innerHTML = imagesObject.length + " image" + ((imagesObject.length > 1) ? "s" : "") + " stored in your browser";
+        //document.getElementById("state").innerHTML = imagesObject.length + " image" + ((imagesObject.length > 1) ? "s" : "") + " stored in your browser";
 
         document.getElementById("deleteImgs").style.display = "inline";
 
 
       } else {
-        document.getElementById("state").innerHTML = "No images stored in your browser.";
+        //document.getElementById("state").innerHTML = "No images stored in your browser.";
         document.getElementById("deleteImgs").style.display = "none";
       }
 
