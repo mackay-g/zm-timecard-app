@@ -28,18 +28,22 @@
     }
     .logo {
       width: 100%;
-      max-width: 170px;
+      max-width: 220px;
+      margin-right:10px;
     }
 
     #img-container {
 
-      min-height: 200px;
+      min-width: 200px;
+      min-height:200px;
       padding: 25px;
       background-color: white;
-      border: 1px solid black;
+      border-radius: 3px;
       position: relative;
       display: block;
       margin: 30px auto 0;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
+      
 
     }
 
@@ -52,8 +56,8 @@
       right: -32px;
       bottom: -32px;
       position: absolute;
-      border: 1px solid black;
-      box-shadow: 1px 1px 2px black;
+      border: 3px solid #1681F8;
+      
 
     }
 
@@ -64,6 +68,7 @@
     .btn.upload i{
       top:12px;
       position: relative;
+      color: #1681F8;
     }
 
     .btn.controls.small {
@@ -102,6 +107,7 @@
       text-align: center;
       color: black;
       margin:10px;
+      box-shadow: rgba(0, 0, 0, 0.2) 0px 18px 50px -10px;
 
     }
 
@@ -126,7 +132,7 @@
       font-size: 9px;
       font-weight: 400;
       letter-spacing: 0.5em;
-      margin: 0;
+      /* margin: 0; */
 
     }
 
@@ -136,7 +142,7 @@
     }
 
     h2 {
-      font-size: 18px;
+      /* font-size: 18px; */
       font-weight: 400;
 
     }
@@ -165,6 +171,7 @@
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
     box-shadow: none;
+    margin-bottom: 10px;
 
     
     }
@@ -191,7 +198,7 @@
   color: red;
 }
 #timer2{
-  margin:20px 0;
+  margin:30px 0;
 }
 
 [contenteditable] {
@@ -199,7 +206,7 @@
 }
 
 h2[contenteditable]:focus, p[contenteditable]:focus {
-    background: red;
+    background: #ff0033;
 }
   </style>
 </head>
@@ -211,7 +218,7 @@ h2[contenteditable]:focus, p[contenteditable]:focus {
         <![endif]-->
 
     <header>
-      <img class="logo" src="logo.png" alt="ZenMarket">
+      <img class="logo" src="logo.svg" alt="ZenMarket">
       <p class="tagline">ゼンマーケット株式会社</p>
       <h2>社員証</h2>
     </header>
@@ -237,9 +244,9 @@ h2[contenteditable]:focus, p[contenteditable]:focus {
     <input placeholder="60" class="form-control text-center timer-width" type="text" maxlength="2" value="60" id="m1">
 <div class="timer-width divider">:</div>
 <input placeholder="00" class="form-control text-center timer-width" type="text" maxlength="2" value="00" id="s1">
-<br>
-    <button type="button" class="btn controls small" onclick="pauseTimer()"><i class="fa-solid fa-pause"></i></button><button type="button" class="btn controls large" onclick="countdownStart()"><i class="fa-solid fa-play"></i></button>
-    <button type="button" class="btn controls small" onclick="clearTimer()"><i class="fa-solid fa-redo"></i></button>
+<br><button type="button" class="btn controls small" onclick="clearTimer()"><i class="fa-solid fa-redo"></i></button>
+   <button type="button" class="btn controls large" onclick="countdownStart()"><i class="fa-solid fa-play"></i></button> <button type="button" class="btn controls small" onclick="pauseTimer()"><i class="fa-solid fa-pause"></i></button>
+    
   </section>
 
     <footer>
