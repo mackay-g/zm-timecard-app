@@ -460,7 +460,7 @@ function startTimer(totalTime){
     $('#s1').val(secondsToS(totalTime))
     console.log(totalTime);
     
-    if(totalTime == 0){
+    if(totalTime <= 0){
 		localStorage.removeItem('stopTime')
 		clearInterval(timer)
 	}
@@ -498,7 +498,12 @@ function checkHasTimer(){
 		var currentTime = new Date()
 		$('#timer').html(secondsToHms((stopTime - currentTime.getTime())/1000))
 		startTimer((stopTime - currentTime.getTime())/1000)
+	} else{
+    if(stopTime - currentTime == 0){
+		localStorage.removeItem('stopTime')
+		clearInterval(timer)
 	}
+  }
 }
 
 $("input:text").focus(function() { $(this).select(); } );
