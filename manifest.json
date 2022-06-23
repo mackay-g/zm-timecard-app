@@ -2,12 +2,12 @@
     "short_name": "TimeCard",
     "name": "ZenMarket TimeCard Application",
     "icons": [
-      // {
-      //   "src": "maskable_icon.png",
-      //   "sizes": "144x144",
-      //   "type": "image/png",
-      //   "purpose": "maskable"
-      // },
+      {
+        "src": "maskable_icon.png",
+        "sizes": "144x144",
+        "type": "image/png",
+        "purpose": "maskable"
+      },
       {
           "src": "regular_icon.png",
           "sizes": "144x144",
