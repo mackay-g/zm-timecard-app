@@ -1,16 +1,16 @@
 {
     "short_name": "TimeCard",
-    "name": "日本から世界へ",
+    "name": "ZenMarket TimeCard Application",
     "icons": [
         {
           "src": "regular_icon.png",
-          "sizes": "512x512",
+          "sizes": "128x128",
           "type": "image/png",
           "purpose": "any"
         },
         {
           "src": "maskable_icon.png",
-          "sizes": "512x512",
+          "sizes": "128x128",
           "type": "image/png",
           "purpose": "maskable"
         }
